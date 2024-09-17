@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Main\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/*Route::get('/', function () {
+    return 'aaaaaa';
+});*/
+
+Route::group(['namespace' => 'Main'], function () {
+    Route::get('/', 'IndexController'); //у нас в этом классе один метод, поэтому он будет подтягиваться автоматически, не надо его уакзывать принудительно через @
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
